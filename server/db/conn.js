@@ -1,27 +1,25 @@
 // Database connection
 
-const { MongoClient } = require("mongodb")
-const Db = process.env.ATLAS_URI;
-const client = new MongoClient(Db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
+const mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.set('strictQuery', false);
+const dbUrl = process.env.ATLAS_URI;
 
-var _db;
+// Function to connect to the database
+const connect = async () => {
+    mongoose.connect(dbUrl, { 
+        useNewUrlParser: true, 
+        useUnifiedTopology: true
+    });
+    const db = mongoose.connection;
 
-module.exports = {
-    connectToServer: function (callback) {
-        client.connect(function (err, db) {
-            if (db)
-            {
-                _db = db.db("employeedb");
-                console.log("Successfully connected to MongoDB.");
-            }
-            return callback(err);
-        });
-    },
-
-    getDb: function () {
-        return _db;
-    },
+    db.on("error", () => {
+        console.log("Could not connect to database");
+    });
+    db.once("open", () => {
+        console.log("Successfully connected to databse");
+    });
 };
+
+// When module is called return the connect function
+module.exports = { connect };
