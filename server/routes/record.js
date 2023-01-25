@@ -10,22 +10,19 @@ const dbo = require("../db/conn");
 // Convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
  
- 
+const dbModels = require("../models/dbSchemas");
+
 // Get a list of all the records.
 recordRoutes.route("/record").get(function (req, res) {
- let db_connect = dbo.getDb("employeedb");
- db_connect
-   .collection("records")
-   .find({})
-   .toArray(function (err, result) {
-     if (err) throw err;
-     res.json(result);
-   });
+ dbo.connect();
+  dbModels.employeeInfo.find({});
+   
 });
  
+/*
 // Get a single record by id
 recordRoutes.route("/record/:id").get(function (req, res) {
- let db_connect = dbo.getDb();
+ let db_connect = dbo.connect();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect
    .collection("records")
@@ -37,7 +34,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
  
 // Create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
- let db_connect = dbo.getDb();
+ let db_connect = dbo.connect();
  let myobj = {
    name: req.body.name,
    position: req.body.position,
@@ -51,7 +48,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
  
 // Update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
- let db_connect = dbo.getDb();
+ let db_connect = dbo.connect();
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {
    $set: {
@@ -71,7 +68,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
  
 // Delete a record
 recordRoutes.route("/:id").delete((req, response) => {
- let db_connect = dbo.getDb();
+ let db_connect = dbo.connect();
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect.collection("records").deleteOne(myquery, function (err, obj) {
    if (err) throw err;
@@ -79,5 +76,5 @@ recordRoutes.route("/:id").delete((req, response) => {
    response.json(obj);
  });
 });
- 
+ */
 module.exports = recordRoutes;
