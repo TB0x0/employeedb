@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 
 export default function Create() {
     const [form, setForm] = useState({
-        name: "",
+        emp_name: "",
         position: "",
         level: "",
     });
@@ -34,7 +34,7 @@ export default function Create() {
             return;
         });
 
-        setForm({ name: "", position: "", level: "" });
+        setForm({ emp_name: "", position: "", level: "" });
         navigate("/");
     }
 
@@ -48,9 +48,9 @@ export default function Create() {
               <input
                 type="text"
                 className="form-control"
-                id="name"
-                value={form.name}
-                onChange={(e) => updateForm({ name: e.target.value })}
+                id="emp_name"
+                value={form.emp_name}
+                onChange={(e) => updateForm({ emp_name: e.target.value })}
               />
             </div>
             <div className="form-group">

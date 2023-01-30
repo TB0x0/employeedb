@@ -26,52 +26,31 @@ routes.get("/record", async (req, res) => {
 
 
 // Create a new record
-
 routes.post("/record/add", async (req, res) => {
-  const record = new dbModels.employeeInfo(req.body);
-
+  const record = new dbModel.employeeInfo(req.body);
+  console.log(record);
   try {
-    const savedRecord = await record.save();
-    res.send(savedRecord);
-  }catch (error) {
+    await record.save();
+    res.send(record);
+  } catch (error) {
     res.status(500).send(error);
   }
 });
 
-/*
+
 // Get a single record by id
 routes.patch("/record/:id"), async (req, res) => {
  try {
-  await employeeInfo.findByIdAndUpdate(req.params.id, req.body);
-  await dbModels.employeeInfo.save();
+  await dbModel.employeeInfo.findByIdAndUpdate(req.params.id, req.body);
+  await dbModel.employeeInfo.save();
   response.send()
- }
- let myquery = { _id: ObjectId(req.params.id) };
- db_connect
-   .collection("records")
-   .findOne(myquery, function (err, result) {
-     if (err) throw err;
-     res.json(result);
-   });
-});
- 
-// Create a new record.
-recordRoutes.route("/record/add").post(function (req, response) {
- let db_connect = dbo.connect();
- let myobj = {
-   name: req.body.name,
-   position: req.body.position,
-   level: req.body.level,
- };
- db_connect.collection("records").insertOne(myobj, function (err, res) {
-   if (err) throw err;
-   response.json(res);
- });
-});
+ }catch (error) {
+  res.status(500).send(error);
+}
+};
  
 // Update a record by id.
-recordRoutes.route("/update/:id").post(function (req, response) {
- let db_connect = dbo.connect();
+routes.route("/update/:id").post(function (req, response) {
  let myquery = { _id: ObjectId(req.params.id) };
  let newvalues = {
    $set: {
@@ -80,24 +59,15 @@ recordRoutes.route("/update/:id").post(function (req, response) {
      level: req.body.level,
    },
  };
- db_connect
-   .collection("records")
-   .updateOne(myquery, newvalues, function (err, res) {
-     if (err) throw err;
-     console.log("1 document updated");
-     response.json(res);
-   });
 });
  
 // Delete a record
-recordRoutes.route("/:id").delete((req, response) => {
- let db_connect = dbo.connect();
+routes.route("/:id").delete((req, response) => {
  let myquery = { _id: ObjectId(req.params.id) };
- db_connect.collection("records").deleteOne(myquery, function (err, obj) {
+ dbModel.employeeInfo.deleteOne(myquery, function (err, obj) {
    if (err) throw err;
    console.log("1 document deleted");
    response.json(obj);
  });
 });
- */
 module.exports = routes;
