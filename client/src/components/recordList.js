@@ -79,6 +79,8 @@ export default function RecordList() {
            <th>Name</th>
            <th>Position</th>
            <th>Level</th>
+           <th>Join Date</th>
+           <th>Hourly Rate</th>
            <th>Action</th>
          </tr>
        </thead>

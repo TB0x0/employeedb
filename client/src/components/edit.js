@@ -14,7 +14,7 @@ export default function Edit() {
  useEffect(() => {
    async function fetchData() {
      const id = params.id.toString();
-     const response = await fetch(`http://localhost:5000/record/${params.id.toString()}`);
+     const response = await fetch(`http://localhost:5000/record/${id}`);
  
      if (!response.ok) {
        const message = `An error has occurred: ${response.statusText}`;
@@ -89,6 +89,26 @@ export default function Edit() {
            onChange={(e) => updateForm({ position: e.target.value })}
          />
        </div>
+       <div className="form-group">
+              <label htmlFor="join_date">Join Date</label>
+              <input
+                type="text"
+                className="form-control"
+                id="join_date"
+                value={form.join_date}
+                onChange={(e) => updateForm({ join_date: e.target.value })}
+              />
+        </div>
+        <div className="form-group">
+          <label htmlFor="hourly_rate">Hourly Rate</label>
+          <input
+            type="text"
+            className="form-control"
+            id="hourly_rate"
+            value={form.hourly_rate}
+            onChange={(e) => updateForm({ hourly_rate: e.target.value })}
+          />
+        </div>
        <div className="form-group">
          <div className="form-check form-check-inline">
            <input

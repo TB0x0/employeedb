@@ -8,6 +8,8 @@ export default function Create() {
         emp_name: "",
         position: "",
         level: "",
+        join_date: "",
+        hourly_rate:""
     });
     const navigate = useNavigate();
 
@@ -34,7 +36,7 @@ export default function Create() {
             return;
         });
 
-        setForm({ emp_name: "", position: "", level: "" });
+        setForm({ emp_name: "", position: "", level: "", join_date: "", hourly_rate: "" });
         navigate("/");
     }
 
@@ -61,6 +63,26 @@ export default function Create() {
                 id="position"
                 value={form.position}
                 onChange={(e) => updateForm({ position: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="join_date">Join Date</label>
+              <input
+                type="text"
+                className="form-control"
+                id="join_date"
+                value={form.join_date}
+                onChange={(e) => updateForm({ join_date: e.target.value })}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="hourly_rate">Hourly Rate</label>
+              <input
+                type="text"
+                className="form-control"
+                id="hourly_rate"
+                value={form.hourly_rate}
+                onChange={(e) => updateForm({ hourly_rate: e.target.value })}
               />
             </div>
             <div className="form-group">

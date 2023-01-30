@@ -41,9 +41,8 @@ routes.post("/record/add", async (req, res) => {
 // Get a single record by id
 routes.patch("/record/:id"), async (req, res) => {
  try {
-  await dbModel.employeeInfo.findByIdAndUpdate(req.params.id, req.body);
-  await dbModel.employeeInfo.save();
-  response.send()
+  await dbModel.employeeInfo.findById(req.params.id);
+  res.send()
  }catch (error) {
   res.status(500).send(error);
 }
