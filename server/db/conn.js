@@ -17,7 +17,7 @@ const connect = async () => {
         console.log("Could not connect to database");
     });
     db.once("open", () => {
-        console.log("Successfully connected to databse");
+        console.log("Successfully connected to database");
     });
 };
 

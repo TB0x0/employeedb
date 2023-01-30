@@ -1,4 +1,4 @@
-const { response } = require("express");
+const { res } = require("express");
 const express = require("express");
  
 // recordRoutes is an instance of the express router used to define routes
@@ -11,37 +11,41 @@ const dbo = require("../db/conn");
 // Convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
  
-const dbModels = require("../models/dbSchemas");
+const dbModel = require("../models/employees");
 
 // Get a list of all the records.
 routes.get("/record", async (req, res) => {
- const record = await dbModels.find({});
-
+ const record = await dbModel.employeeInfo.find();
  try {
-  response.send(foods);
+  res.send(record);
  } catch (error) {
   res.status(500).send(error);
  }
    
 });
- 
+
+
 // Create a new record
 
-routes.post("/record/add", async (rez, res) => {
-  const record = new dbModels.employeeInfo(req, res);
+routes.post("/record/add", async (req, res) => {
+  const record = new dbModels.employeeInfo(req.body);
 
   try {
-    await record.save();
-    response.send(record);
+    const savedRecord = await record.save();
+    res.send(savedRecord);
   }catch (error) {
-    response.status(500).send(error);
+    res.status(500).send(error);
   }
 });
 
 /*
 // Get a single record by id
-recordRoutes.route("/record/:id").get(function (req, res) {
- let db_connect = dbo.connect();
+routes.patch("/record/:id"), async (req, res) => {
+ try {
+  await employeeInfo.findByIdAndUpdate(req.params.id, req.body);
+  await dbModels.employeeInfo.save();
+  response.send()
+ }
  let myquery = { _id: ObjectId(req.params.id) };
  db_connect
    .collection("records")

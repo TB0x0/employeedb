@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
  
 const Record = (props) => (
  <tr>
-   <td>{props.record.name}</td>
+   <td>{props.record.emp_name}</td>
    <td>{props.record.position}</td>
    <td>{props.record.level}</td>
+   <td>{props.record.join_date}</td>
+   <td>{props.record.hourly_rate}</td>
    <td>
      <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
      <button className="btn btn-link"
