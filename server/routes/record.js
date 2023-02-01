@@ -39,15 +39,14 @@ routes.post("/record/add", async (req, res) => {
 
 
 // Get a single record by id
-routes.get("/record/:id"), async (req, res) => {
+routes.get("/record/:id", async (req, res) => {
  try {
-  const employee = await dbModel.employeeInfo.findOne({_id: mongoose.ObjectId(req.params.id)});
+  const employee = await dbModel.employeeInfo.findOne(ObjectId(req.params.id));
   res.send(employee)
  }catch (error) {
-  console.log("debug");
   res.status(400).send(error);
 }
-};
+});
  
 // Update a record by id.
 routes.route("/update/:id").post(function (req, response) {
