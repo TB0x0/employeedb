@@ -50,10 +50,13 @@ export default function Edit() {
      name: form.emp_name,
      position: form.position,
      level: form.level,
+     join_date: form.join_date,
+     hourly_rate: form.hourly_rate,
    };
  
    // This will send a post request to update the data in the database.
-   await fetch(`http://localhost:5000/update/${params.id}`, {
+   const id = params.id.toString();
+   await fetch(`http://localhost:5000/update/${id}`, {
      method: "POST",
      body: JSON.stringify(editedPerson),
      headers: {
@@ -75,7 +78,7 @@ export default function Edit() {
            type="text"
            className="form-control"
            id="name"
-           value={form.name}
+           value={form.emp_name}
            onChange={(e) => updateForm({ emp_name: e.target.value })}
          />
        </div>

@@ -49,15 +49,22 @@ routes.get("/record/:id", async (req, res) => {
 });
  
 // Update a record by id.
-routes.route("/update/:id").post(function (req, response) {
- let myquery = { _id: ObjectId(req.params.id) };
+routes.post("/update/:id", async (req, res) => {
+ let id = ObjectId(req.params.id);
  let newvalues = {
    $set: {
-     name: req.body.name,
+     emp_name: req.body.name,
      position: req.body.position,
      level: req.body.level,
-   },
+     join_date: req.body.join_date,
+     hourly_rate: req.body.hourly_rate
+   }
  };
+
+ const employee = await dbModel.employeeInfo.findOneAndUpdate(id, newvalues);
+ res.send(employee);
+
+
 });
  
 // Delete a record
