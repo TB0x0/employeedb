@@ -39,12 +39,13 @@ routes.post("/record/add", async (req, res) => {
 
 
 // Get a single record by id
-routes.patch("/record/:id"), async (req, res) => {
+routes.post("/record/:id"), async (req, res) => {
  try {
-  await dbModel.employeeInfo.findById(req.params.id);
-  res.send()
+  const employee = await dbModel.employeeInfo.findOne({_id: ObjectId(req.params.id)});
+  res.send(employee)
  }catch (error) {
-  res.status(500).send(error);
+  console.log("debug");
+  res.status(400).send(error);
 }
 };
  

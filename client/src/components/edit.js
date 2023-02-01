@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router";
  
 export default function Edit() {
  const [form, setForm] = useState({
-   name: "",
+   emp_name: "",
    position: "",
    level: "",
    records: [],
@@ -47,7 +47,7 @@ export default function Edit() {
  async function onSubmit(e) {
    e.preventDefault();
    const editedPerson = {
-     name: form.name,
+     name: form.emp_name,
      position: form.position,
      level: form.level,
    };
@@ -70,13 +70,13 @@ export default function Edit() {
      <h3>Update Record</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
-         <label htmlFor="name">Name: </label>
+         <label htmlFor="emp_name">Name: </label>
          <input
            type="text"
            className="form-control"
            id="name"
            value={form.name}
-           onChange={(e) => updateForm({ name: e.target.value })}
+           onChange={(e) => updateForm({ emp_name: e.target.value })}
          />
        </div>
        <div className="form-group">
