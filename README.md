@@ -1,5 +1,11 @@
 # employeedb
-Employee Database to practice again with the MERN stack. Eventually I'd like to prettify the UI and add searching and sorting functions.
+Employee Database Tool
+
+### Planned Features:
+
+- Administrator, manager, and employee logins with separate views.
+- Clock in, clock out for employees.
+- Search and reporting functions.
 
 ### Building and Running
 
