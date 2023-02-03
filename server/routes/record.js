@@ -76,4 +76,13 @@ routes.route("/:id").delete((req, response) => {
    response.json(obj);
  });
 });
+
+// User signup
+routes.post("/auth/signup", passport.authenticate('local-signup', { session: false }), (req, res, next) => {
+  res.json({
+    user: req.user,
+  });
+  }
+);
+
 module.exports = routes;
