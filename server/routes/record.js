@@ -13,6 +13,8 @@ const ObjectId = require("mongodb").ObjectId;
  
 const dbModel = require("../models/employees");
 
+const passport = require("passport");
+
 // Get a list of all the records.
 routes.get("/record", async (req, res) => {
  const record = await dbModel.employeeInfo.find();
@@ -77,12 +79,11 @@ routes.route("/:id").delete((req, response) => {
  });
 });
 
-// User signup
-routes.post("/auth/signup", passport.authenticate('local-signup', { session: false }), (req, res, next) => {
-  res.json({
-    user: req.user,
-  });
-  }
+// User login
+routes.post("/auth/login", passport.authenticate('local-login', {
+  successRedirect: '/',
+  failureRedirect: '/auth'
+  })
 );
 
 module.exports = routes;

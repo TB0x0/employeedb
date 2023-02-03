@@ -1,5 +1,6 @@
 // Passport authentication config
 
+const passport = require('passport');
 const localStrategy = require("passport-local").Strategy;
 const user = require("../models/users");
 
