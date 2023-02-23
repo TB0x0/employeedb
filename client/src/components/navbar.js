@@ -33,6 +33,11 @@ export default function Navbar() {
                Add New Employee
              </NavLink>
            </li>
+           <li className="nav-item">
+             <NavLink className="nav-link" to="/login">
+               Login
+             </NavLink>
+           </li>
          </ul>
        </div>
      </nav>
