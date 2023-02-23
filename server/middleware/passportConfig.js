@@ -50,7 +50,7 @@ module.exports = (passport) => {
                         return done(null, false);
                     }
 
-                    return done(null, userExists);
+                    return done(null, userExists); 
                 } catch (error) {
                     console.log(error);
                     return done(error, false);
